@@ -5,14 +5,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>GitFetch</title>
         <link rel="stylesheet" href="/style.css" />
-        <script src="/script.js"></script>
+        <script defer src="/script.js"></script>
     </head>
     <body>
-        <h1>Get Github Info!</h1>
-        <form action="">
-            <label for="">Enter GitHub username: </label>
-            <input type="text" />
-            <button type="submit">Submit</button>
-        </form>
+        <section>
+            <h1>Get Github Info!</h1>
+            <form method="post" id="theForm">
+                <label for="userId">UserId: </label>
+                <input type="text" id="userId" />
+                <button type="submit">Submit</button>
+            </form>
+        </section>
     </body>
 </html>
