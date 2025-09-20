@@ -1,9 +1,18 @@
 "use strict";
+
 const theForm = document.querySelector("form");
 const userId = document.querySelector("#userId");
+let data;
 
-const getData = async (userId) => {
-    const res = await fetch(`https://api.github.com/users/${userId}`);
+const getData = async (query) => {
+    let link;
+
+    if (query === "Details") {
+        link = `https://api.github.com/users/${userId.value}`;
+    } else if (query === "Followers") link = data.followers_url;
+    else if (query === "Following") link = data.following_url;
+
+    const res = await fetch(link);
     if (res.ok) {
         const obj = await res.json();
         return obj;
@@ -13,26 +22,41 @@ const getData = async (userId) => {
     }
 };
 
-const showResult = (data) => {
+function showResult(data) {
     console.log(data);
     const container = document.querySelector("#result");
-    const newDiv = document.createElement("div");
-    newDiv.className = "div";
-    if (data === 0) newDiv.innerHTML = `<p> Invalid UserId </p>`;
+    const name = document.createElement("p");
+    const avatar = document.createElement("img");
+    const followers = document.createElement("p");
+    const followersLink = document.createElement("a");
+
+    if (data === 0) name.textContent = "Invalid UserId";
     else {
-        newDiv.innerHTML = `
-            <img src="${data.avatar_url}" class="avatar" width="48px"></img>
-            <p> Name: ${data.name} </p>
-        `;
+        avatar.src = data.avatar_url;
+        avatar.className = "avatar";
+        avatar.width = 48;
+        name.textContent = data.name;
+        followers.textContent = `Followers: ${data.followers}`;
+        followersLink.href = "#";
+        followersLink.id = "followers_url";
+        followersLink.text = "Show Followers";
+        followersLink.addEventListener("click", mainFunction);
     }
     container.textContent = "";
-    container.append(newDiv);
-};
+    container.append(name, avatar, followers, followersLink);
+}
 
-theForm.addEventListener("submit", async (event) => {
+async function mainFunction(event) {
     event.preventDefault();
-    const data = await getData(userId.value);
-    if (data != 0) {
-        showResult(data);
-    } else showResult(data);
-});
+    console.log(event.currentTarget.id);
+    let query;
+
+    if (event.currentTarget.id === "theForm") query = "Details";
+    else if (event.currentTarget.id === "followers_url") query = "Followers";
+
+    data = await getData(query);
+
+    showResult(data);
+}
+
+theForm.addEventListener("submit", mainFunction);
