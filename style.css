@@ -1,12 +1,92 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* 
+    border: 1px black solid; */
 }
+
 img {
     display: block;
 }
 
+body {
+    background-color: darkgray;
+    margin: 2rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+}
+
+form {
+    margin-top: 2rem;
+}
+
+input {
+    margin-left: 1rem;
+    padding: 0.5rem;
+    width: 25%;
+    border-radius: 6px;
+}
+
+.button {
+    font-size: 1rem;
+    padding: 0.5rem 3rem;
+    border-radius: 6px;
+}
+
+.section-result {
+    font-size: 1.15rem;
+    margin: 2rem 0;
+    padding: 1rem;
+    display: block;
+}
+
+.result-main {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.main-left {
+    font-size: 2rem;
+    align-items: center;
+    justify-content: space-evenly;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 25%;
+}
+
+.main-left > img {
+    width: 16px;
+}
+
+.main-left > div,
+.main-left > img,
+.main-left > p {
+    flex: 1 1 50%;
+}
+
+.main-left .details {
+    flex: 1 1 100%;
+}
+
+.main-right {
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex: 1 1 48%;
+    gap: 6rem;
+}
+
+.main-right:first-child {
+    width: auto;
+}
+
+.bio {
+    margin-top: 2rem;
+}
+
 .avatar {
-    border-radius: 50%;
+    border-radius: 25%;
 }
