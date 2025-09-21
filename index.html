@@ -9,31 +9,39 @@
     </head>
     <body>
         <section>
-            <h1>Get Github Info!</h1>
+            <h1>GitFetch</h1>
             <form method="post" id="theForm">
                 <label for="userId">UserId: </label>
                 <input type="text" id="userId" />
                 <button type="submit" class="button">Fetch</button>
             </form>
         </section>
+        <p class="invalid">Invalid UserId</p>
         <section class="section-result" id="result">
             <div class="result-main">
                 <div class="main-left" id="leftSide">
                     <img src="" alt="Avatar" id="avatar" width="32px" />
                     <div class="name">
-                        <p id="name">Name</p>
+                        <p class="profileName" id="name">Name</p>
                         <p id="profileId">User Name</p>
                     </div>
-                    <p class="details">Location</p>
-                    <p class="details">Joined On</p>
+                    <p class="details">Location: <span id="location"></span></p>
+                    <p class="details">Joined On: <span id="joinedDate">Date</span></p>
                 </div>
                 <div class="main-right" id="rightSide">
-                    <a href="">Followers</a>
-                    <a href="">Following</a>
-                    <a href="">Repos</a>
+                    <div id="followers">
+                        <p>Followers<span class="block" id="followersNo">Followers</span></p>
+                    </div>
+                    <div id="following">
+                        <p>Following<span class="block" id="followingNo">Following</span></p>
+                    </div>
+                    <div id="repos">
+                        <p>Repos<span class="block" id="reposNo">Repos</span></p>
+                    </div>
                 </div>
             </div>
-            <div class="bio">Here will be the bio</div>
+            <div class="bio" id="bio">Here will be the bio</div>
+            <a href="" id="profileLink"></a>
         </section>
     </body>
 </html>
