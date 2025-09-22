@@ -50,15 +50,17 @@ const showResult = (data) => {
         avatar.src = data.avatar_url;
         userName.textContent = data.name;
         loginId.textContent = userId.value;
-        bio.textContent = data.bio;
-        idLocation.textContent = data.location;
+        if (data.bio) bio.textContent = data.bio;
+        else bio.textContent = "-- Nil --";
+        if (data.location) idLocation.textContent = data.location;
+        else idLocation.textContent = "--";
         followers.textContent = data.followers;
         following.textContent = data.following;
         repos.textContent = data.public_repos;
         profileLink.href = data.html_url;
         joinedDate.textContent = data.created_at;
 
-        container.style.display = "flex";
+        container.style.display = "grid";
     }
 };
 

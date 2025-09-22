@@ -18,29 +18,36 @@
         </section>
         <p class="invalid">Invalid UserId</p>
         <section class="section-result" id="result">
-            <div class="result-main">
-                <div class="main-left" id="leftSide">
-                    <img src="" alt="Avatar" id="avatar" width="32px" />
-                    <div class="name">
-                        <p class="profileName" id="name">Name</p>
-                        <p id="profileId">User Name</p>
-                    </div>
-                    <p class="details">Location: <span id="location"></span></p>
-                    <p class="details">Joined On: <span id="joinedDate">Date</span></p>
-                </div>
-                <div class="main-right" id="rightSide">
-                    <div id="followers">
-                        <p>Followers<span class="block" id="followersNo">Followers</span></p>
-                    </div>
-                    <div id="following">
-                        <p>Following<span class="block" id="followingNo">Following</span></p>
-                    </div>
-                    <div id="repos">
-                        <p>Repos<span class="block" id="reposNo">Repos</span></p>
-                    </div>
+            <div class="main">
+                <img class="avatar" src="" alt="Avatar" id="avatar" />
+                <div class="details">
+                    <p class="profileName" id="name">Name</p>
+                    <p class="profileId" id="profileId">User Name</p>
+                    <p class="location">Location: <span id="location"></span></p>
+                    <p class="joined">Joined On: <span id="joinedDate">Date</span></p>
                 </div>
             </div>
-            <div class="bio" id="bio">Here will be the bio</div>
+            <div class="followers-area">
+                <p>Followers</p>
+                <p id="followersNo">Followers</p>
+            </div>
+            <div class="following-area">
+                <p>Following</p>
+                <p id="followingNo">Following</p>
+            </div>
+            <div class="repos-area">
+                <p>Repos</p>
+                <p id="reposNo">Repos</p>
+            </div>
+            <div class="profileLink">
+                <a id="profileLink" target="_blank">Link</a>
+            </div>
+
+            <div class="bio">
+                <p class="head">Bio</p>
+                <p id="bio">Here will be the bio</p>
+            </div>
+
             <a href="" id="profileLink"></a>
         </section>
     </body>
