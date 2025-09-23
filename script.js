@@ -53,12 +53,15 @@ const showResult = (data) => {
         if (data.bio) bio.textContent = data.bio;
         else bio.textContent = "-- Nil --";
         if (data.location) idLocation.textContent = data.location;
-        else idLocation.textContent = "--";
+        else idLocation.textContent = "Unknown";
         followers.textContent = data.followers;
         following.textContent = data.following;
         repos.textContent = data.public_repos;
         profileLink.href = data.html_url;
-        joinedDate.textContent = data.created_at;
+
+        const date = new Date(data.created_at);
+
+        joinedDate.textContent = date.toLocaleDateString("en-GB", { year: "numeric", month: "short" });
 
         container.style.display = "grid";
     }
