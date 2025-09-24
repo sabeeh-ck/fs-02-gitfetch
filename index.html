@@ -8,27 +8,37 @@
         <script defer src="/script.js"></script>
     </head>
     <body>
-        <section class="header">
+        <header>
             <h1>GitFetch</h1>
+        </header>
+        <section class="form">
             <form method="post" id="theForm">
-                <label for="userId">UserId: </label>
-                <input type="text" id="userId" />
+                <label for="userId"><img src="img/icon-search.png" alt="Search" /></label>
+                <input type="text" id="userId" placeholder="Enter the userid..." />
                 <button type="submit" class="button">Fetch</button>
             </form>
         </section>
         <p class="invalid">Invalid UserId</p>
         <section class="section-main" id="result">
             <div class="main">
-                <img class="avatar" src="" alt="Avatar" id="avatar" />
-                <div class="details">
-                    <div>
-                        <p class="profileName" id="name">Name</p>
-                        <p class="profileId" id="profileId">User Name</p>
-                    </div>
-                    <p class="location">Location: <span id="location"></span></p>
-                    <p class="joined">Joined On: <span id="joinedDate">Date</span></p>
-                    <a id="profileLink" target="_blank">View Profile</a>
+                <div class="avatar"><img src="" alt="Avatar" id="avatar" /></div>
+                <div class="name">
+                    <p class="profileName" id="name">Name</p>
+                    <p class="profileId" id="profileId">User Name</p>
                 </div>
+                <div class="details">
+                    <p class="location">
+                        <img class="icons" src="img/icon-location.png" alt="Location icon" />Location:
+                        <span id="location"></span>
+                    </p>
+                    <p class="joined">
+                        <img class="icons" src="img/icon-date.png" alt="Date Joined" />Joined On:
+                        <span id="joinedDate">Date</span>
+                    </p>
+                </div>
+                <a href="" id="viewProfile" target="_blank">
+                    <img class="icons" src="img/icon-open.png" alt="Open Profile" />View Profile
+                </a>
             </div>
             <div class="followers-area">
                 <p>Followers</p>
@@ -44,7 +54,7 @@
             </div>
 
             <div class="bio">
-                <p>Bio</p>
+                <p><img class="icons" src="img/icon-bio.png" alt="Bio" />Bio</p>
                 <p id="bio">Here will be the bio</p>
             </div>
 

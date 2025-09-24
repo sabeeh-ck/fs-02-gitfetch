@@ -19,7 +19,7 @@ const following = document.querySelector("#followingNo");
 const repos = document.querySelector("#reposNo");
 const joinedDate = document.querySelector("#joinedDate");
 //  Join date
-const profileLink = document.querySelector("#profileLink");
+const viewProfile = document.querySelector("#viewProfile");
 //  Optional extras: Most starred repos, top languages used, contribution
 
 const getData = async (query) => {
@@ -57,7 +57,7 @@ const showResult = (data) => {
         followers.textContent = data.followers;
         following.textContent = data.following;
         repos.textContent = data.public_repos;
-        profileLink.href = data.html_url;
+        viewProfile.href = data.html_url;
 
         const date = new Date(data.created_at);
 

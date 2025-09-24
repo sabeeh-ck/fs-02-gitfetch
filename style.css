@@ -1,15 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* 
-    border: 1px solid white; */
+    box-sizing: border-box;
 }
 
 :root {
-    --PRIMARY-COLOR: #021b1a;
-    --SECONDARY-COLOR: #06302b;
+    --BACKGROUND-COLOR: #0a0a0a;
+    --SECONDARY-COLOR: #171717;
     --TEXT-COLOR: #f1f7f8;
     --LINK-COLOR: hsla(173, 78%, 11%, 0.5);
+
+    --BODY-FONT: "Inter", sans-serif;
 }
 
 img {
@@ -26,33 +29,64 @@ a {
 }
 
 body {
-    background-color: var(--PRIMARY-COLOR);
+    background-color: var(--BACKGROUND-COLOR);
     color: var(--TEXT-COLOR);
     margin: 3rem;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: bold;
+    font-family: var(--BODY-FONT);
+    font-weight: 400;
 }
 
-h1 {
-    font-size: 4rem;
+header {
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.form {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
 }
 
 form {
-    margin-top: 2rem;
+    width: 50%;
+    padding: 1rem;
+    background-color: var(--SECONDARY-COLOR);
+    display: flex;
+    align-items: center;
+    font-family: var(--BODY-FONT);
+    color: var(--TEXT-COLOR);
+    gap: 1rem;
+    border-radius: 2rem;
+    justify-content: right;
+}
+
+form label {
+    font-weight: 700;
+}
+
+form input {
+    background-color: var(--BACKGROUND-COLOR);
+    border: none;
+    font-family: var(--BODY-FONT);
+    flex: 1;
+    height: 3rem;
+    border-radius: 1rem;
+    padding: 1rem;
     color: var(--TEXT-COLOR);
 }
 
-input {
-    margin-left: 1rem;
-    padding: 0.5rem;
-    width: 25%;
-    border-radius: 6px;
-}
-
-.button {
-    font-size: 1rem;
-    padding: 0.5rem 3rem;
-    border-radius: 6px;
+form .button {
+    z-index: 5;
+    border: none;
+    border-radius: 1rem;
+    background-color: var(--BACKGROUND-COLOR);
+    color: inherit;
+    font: inherit;
+    height: 3rem;
+    width: 10rem;
+    justify-self: right;
+    cursor: pointer;
 }
 
 .invalid {
@@ -69,7 +103,8 @@ input {
 
 .section-main > div {
     background-color: var(--SECONDARY-COLOR);
-    border-radius: 1rem;
+    border-radius: 2rem;
+    padding: 1rem;
 }
 
 .main {
@@ -77,25 +112,50 @@ input {
     grid-column: 1 / span 2;
     display: flex;
     flex-wrap: wrap;
-    padding: 0.5rem;
-    gap: 1rem;
 }
 
-.avatar {
-    width: 16rem;
-    height: fit-content;
-    border-radius: 0.5rem;
+.avatar img {
+    border-radius: 1rem;
+    width: 11rem;
+    aspect-ratio: 1/1;
 }
 
-.details {
-    grid-column: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+.name {
+    padding-left: 1rem;
+    align-self: center;
+    width: 20rem;
 }
 
 .profileName {
     font-size: 3rem;
+    line-height: normal;
+    font-weight: 700;
+}
+
+.details {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 0.25rem;
+    flex-basis: 100%;
+}
+
+.main a {
+    width: 100%;
+    height: 3rem;
+    margin-top: 1rem;
+    border-radius: 1rem;
+    background-color: var(--BACKGROUND-COLOR);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icons {
+    width: 1rem;
+    display: inline;
+    margin-right: 0.25rem;
 }
 
 .followers-area,
@@ -107,7 +167,8 @@ input {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    height: 8rem;
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 
 .followers-area:hover,
@@ -123,10 +184,6 @@ input {
     grid-row: 2;
     grid-column: 3 / span 3;
     min-height: 8rem;
-}
-
-.bio :first-child {
-    font-size: 0.75rem;
 }
 
 .bio :last-child {
