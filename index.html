@@ -14,7 +14,7 @@
         <section class="form">
             <form method="post" id="theForm">
                 <label for="userId"><img src="img/icon-search.png" alt="Search" /></label>
-                <input type="text" id="userId" placeholder="Enter the userid..." />
+                <input type="text" id="userId" placeholder="Enter userid" />
                 <button type="submit" class="button">Fetch</button>
             </form>
         </section>
@@ -37,9 +37,7 @@
                             <p>Joined On: <span id="joinedDate">Date</span></p>
                         </div>
                     </div>
-                    <a href="" id="viewProfile" target="_blank">
-                        <img class="icons" src="img/icon-open.png" alt="Open Profile" />View Profile
-                    </a>
+                    <a href="" id="viewProfile" target="_blank">View Profile</a>
                 </div>
                 <div class="followers-area">
                     <p>Followers</p>
@@ -66,22 +64,20 @@
             </section>
             <section id="section-toggle">
                 <div class="toggle-tabs">
-                    <input type="radio" name="toggle-followers" id="toggle-followers" />
-                    <label class="toggle" for="toggle-followers">Followers</label>
-                    <input type="radio" name="toggle-following" id="toggle-following" />
-                    <label class="toggle" for="tab-following">Following</label>
-                    <input type="radio" name="toggle-repos" id="toggle-repos" />
-                    <label class="toggle" for="tab-repos">Repos</label>
+                    <button class="btn" id="toggle-followers">Followers</button>
+                    <button class="btn" id="toggle-following">Following</button>
+                    <button class="btn" id="toggle-repos">Repos</button>
                 </div>
+                <span class="slider"></span>
             </section>
-            <section id="section-followers">
-                <ul id="list-followers"></ul>
+            <section class="section-followers" id="section-followers">
+                <table id="table-followers"></table>
             </section>
-            <section id="section-following">
-                <ul id="list-following"></ul>
+            <section class="section-following active" id="section-following">
+                <table id="table-following"></table>
             </section>
-            <section id="section-repos">
-                <ul id="list-repos"></ul>
+            <section class="section-repos" id="section-repos">
+                <table id="table-repos"></table>
             </section>
         </main>
     </body>

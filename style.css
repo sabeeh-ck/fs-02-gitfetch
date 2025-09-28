@@ -20,10 +20,17 @@ img {
 
 a {
     text-decoration: none;
-    color: var(--TEXT-COLOR);
+    color: inherit;
 }
 
-.block {
+li {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    line-height: 1.5rem;
+}
+
+.active {
     display: block;
 }
 
@@ -57,7 +64,6 @@ form {
     color: var(--TEXT-COLOR);
     gap: 1rem;
     border-radius: 2rem;
-    justify-content: right;
 }
 
 form label {
@@ -76,7 +82,6 @@ form input {
 }
 
 form .button {
-    z-index: 5;
     border: none;
     border-radius: 1rem;
     background-color: var(--BACKGROUND-COLOR);
@@ -84,7 +89,6 @@ form .button {
     font: inherit;
     height: 3rem;
     width: 10rem;
-    justify-self: right;
     cursor: pointer;
 }
 
@@ -93,7 +97,7 @@ form .button {
 }
 
 main {
-    display: default;
+    display: none;
 }
 
 .section-main {
@@ -201,6 +205,7 @@ main {
 section[id="section-toggle"] {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .toggle-tabs {
@@ -213,22 +218,79 @@ section[id="section-toggle"] {
     padding: 1rem;
 }
 
-.toggle {
-    /* 
-    background-color: var(--BACKGROUND-COLOR); */
+.toggle-tabs > button {
+    background-color: transparent;
+    color: var(--TEXT-COLOR);
+    font: inherit;
+    border: none;
     padding: 1rem;
     border-radius: 1rem;
     width: 10rem;
     text-align: center;
+    cursor: pointer;
+    z-index: 2;
 }
 
-input[type="radio"] {
-    display: none;
-}
-
-input[type="radio"]:checked + label {
+.slider {
+    position: absolute;
     background-color: var(--BACKGROUND-COLOR);
+    width: 10rem;
+    height: 3rem;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+}
+
+.section-followers,
+.section-following,
+.section-repos {
+    display: none;
+    margin-top: 1rem;
+    background-color: var(--SECONDARY-COLOR);
+    padding: 1rem;
+    border-radius: 2rem;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+td {
+    padding: 1rem;
+}
+
+td .div-td {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+td img {
+    border-radius: 50%;
+}
+
+td .link {
+    background-color: var(--BACKGROUND-COLOR);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-left: auto;
+}
+
+.section-followers.active {
+    display: block;
+}
+
+.section-following.active {
+    display: block;
+}
+
+.section-repos.active {
+    display: block;
 }
 
 @media screen and (max-width: 768px) {
+    form {
+        width: 100%;
+    }
 }

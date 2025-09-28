@@ -2,45 +2,53 @@
 
 const theForm = document.querySelector("form");
 const userId = document.querySelector("#userId");
-let data;
+let data, data1;
 
 const container = document.querySelector("#result");
 const invalid = document.querySelector(".invalid");
-
 const avatar = document.querySelector("#avatar");
 const userName = document.querySelector("#name");
 const loginId = document.querySelector("#profileId");
 const bio = document.querySelector("#bio");
 const idLocation = document.querySelector("#location");
-//  Company
-//  Blog/website link
 const followers = document.querySelector("#followersNo");
 const following = document.querySelector("#followingNo");
 const repos = document.querySelector("#reposNo");
 const joinedDate = document.querySelector("#joinedDate");
-//  Join date
 const viewProfile = document.querySelector("#viewProfile");
-//  Optional extras: Most starred repos, top languages used, contribution
+
+const followersToggle = document.querySelector("#toggle-followers");
+const followingToggle = document.querySelector("#toggle-following");
+const reposToggle = document.querySelector("#toggle-repos");
+const slider = document.querySelector(".slider");
+
+const followersSection = document.querySelector("#section-followers");
+const followingSection = document.querySelector("#section-following");
+const reposSection = document.querySelector("#section-repos");
+
+const followingTable = document.querySelector("#table-following");
+const followersTable = document.querySelector("#table-followers");
+const reposTable = document.querySelector("#table-repos");
 
 const getData = async (query) => {
     let link;
 
-    if (query === "Details") {
-        link = `https://api.github.com/users/${userId.value}`;
-    } else if (query === "Followers") link = data.followers_url;
-    else if (query === "Following") link = data.following_url;
+    if (!query) link = `https://api.github.com/users/${userId.value}`;
+    else if (query === "Following") link = `https://api.github.com/users/${userId.value}/following`;
+    else if (query === "Followers") link = `https://api.github.com/users/${userId.value}/followers`;
+    else link = `https://api.github.com/users/${userId.value}/repos`;
 
     const res = await fetch(link);
+
     if (res.ok) {
-        const obj = await res.json();
-        return obj;
+        return await res.json();
     } else {
         console.error("Invalid UserId");
         return 0;
     }
 };
 
-const showResult = (data) => {
+const showMain = (data) => {
     if (data === 0) {
         container.style.display = "none";
         invalid.style.display = "block";
@@ -67,20 +75,118 @@ const showResult = (data) => {
     }
 };
 
+const showContent = (data, table) => {
+    table.textContent = "";
+    const fragment = document.createDocumentFragment();
+
+    for (let i = 0; i < data.length; i += 3) {
+        const tr = document.createElement("tr");
+        const item1 = data[i];
+        if (item1) {
+            const td = document.createElement("td");
+            const div = document.createElement("div");
+            div.classList.add("div-td");
+
+            const avatar = document.createElement("img");
+            avatar.src = item1.avatar_url;
+            avatar.width = 56;
+
+            const login = document.createElement("p");
+            login.textContent = item1.login;
+
+            const a = document.createElement("a");
+            a.href = item1.html_url;
+            a.classList.add("link");
+            a.textContent = "View Profile";
+            a.target = "_blank";
+
+            div.append(avatar, login, a);
+            td.append(div);
+            tr.append(td);
+        }
+
+        const item2 = data[i + 1];
+        if (item2) {
+            const td = document.createElement("td");
+            const div = document.createElement("div");
+            div.classList.add("div-td");
+
+            const avatar = document.createElement("img");
+            avatar.src = item2.avatar_url;
+            avatar.width = 56;
+
+            const login = document.createElement("p");
+            login.textContent = item2.login;
+
+            const a = document.createElement("a");
+            a.href = item2.html_url;
+            a.classList.add("link");
+            a.textContent = "View Profile";
+            a.target = "_blank";
+
+            div.append(avatar, login, a);
+            td.append(div);
+            tr.append(td);
+        }
+        const item3 = data[i + 2];
+        if (item3) {
+            const td = document.createElement("td");
+            const div = document.createElement("div");
+            div.classList.add("div-td");
+
+            const avatar = document.createElement("img");
+            avatar.src = item3.avatar_url;
+            avatar.width = 56;
+
+            const login = document.createElement("p");
+            login.textContent = item3.login;
+
+            const a = document.createElement("a");
+            a.href = item3.html_url;
+            a.classList.add("link");
+            a.textContent = "View Profile";
+            a.target = "_blank";
+
+            div.append(avatar, login, a);
+            td.append(div);
+            tr.append(td);
+        }
+        fragment.appendChild(tr);
+    }
+    table.appendChild(fragment);
+};
+
 async function mainFunction(event) {
     event.preventDefault();
-    //    console.log(event.currentTarget.id);
-    let query;
 
-    if (event.currentTarget.id === "theForm") query = "Details";
-    else if (event.currentTarget.id === "followers") query = "Followers";
-    else if (event.currentTarget.id === "following") query = "Following";
-
-    data = await getData(query);
-
+    data = await getData();
     console.log(data);
 
-    showResult(data);
+    showMain(data);
+
+    data = await getData("Following");
+    showContent(data, followingTable);
+
+    data = await getData("Followers");
+    showContent(data, followersTable);
+
+    data = await getData("Repos");
+    //    showContent(data, reposTable);
 }
+
+const toggles = [followersToggle, followingToggle, reposToggle];
+
+const sections = [followersSection, followingSection, reposSection];
+
+toggles.forEach((toggle) => {
+    toggle.addEventListener("click", (event) => {
+        sections.forEach((s) => s.classList.remove("active"));
+        if (event.target.id === "toggle-followers") followersSection.classList.add("active");
+        else if (event.target.id === "toggle-following") followingSection.classList.add("active");
+        else if (event.target.id === "toggle-repos") reposSection.classList.add("active");
+
+        slider.style.left = event.target.offsetLeft + "px";
+    });
+});
 
 theForm.addEventListener("submit", mainFunction);
