@@ -79,79 +79,100 @@ const showContent = (data, table) => {
     table.textContent = "";
     const fragment = document.createDocumentFragment();
 
-    for (let i = 0; i < data.length; i += 3) {
-        const tr = document.createElement("tr");
-        const item1 = data[i];
-        if (item1) {
-            const td = document.createElement("td");
-            const div = document.createElement("div");
-            div.classList.add("div-td");
+    if (table === reposTable) {
+        for (let i = 0; i < data.length; i++) {
+            const tr = document.createElement("tr");
 
-            const avatar = document.createElement("img");
-            avatar.src = item1.avatar_url;
-            avatar.width = 56;
+            const name = document.createElement("td");
+            name.textContent = data[i].name;
 
-            const login = document.createElement("p");
-            login.textContent = item1.login;
+            const starCount = document.createElement("td");
+            starCount.textContent = `${data[i].stargazers_count} ⭐`;
 
             const a = document.createElement("a");
-            a.href = item1.html_url;
+            a.href = item.html_url;
             a.classList.add("link");
             a.textContent = "View Profile";
             a.target = "_blank";
 
-            div.append(avatar, login, a);
-            td.append(div);
-            tr.append(td);
+            tr.append(name, starCount, a);
+            fragment.appendChild(tr);
         }
+    } else {
+        for (let i = 0; i < data.length; i += 3) {
+            const tr = document.createElement("tr");
+            const item1 = data[i];
+            if (item1) {
+                const td = document.createElement("td");
+                const div = document.createElement("div");
+                div.classList.add("div-td");
 
-        const item2 = data[i + 1];
-        if (item2) {
-            const td = document.createElement("td");
-            const div = document.createElement("div");
-            div.classList.add("div-td");
+                const avatar = document.createElement("img");
+                avatar.src = item1.avatar_url;
+                avatar.width = 56;
 
-            const avatar = document.createElement("img");
-            avatar.src = item2.avatar_url;
-            avatar.width = 56;
+                const login = document.createElement("p");
+                login.textContent = item1.login;
 
-            const login = document.createElement("p");
-            login.textContent = item2.login;
+                const a = document.createElement("a");
+                a.href = item1.html_url;
+                a.classList.add("link");
+                a.textContent = "View Profile";
+                a.target = "_blank";
 
-            const a = document.createElement("a");
-            a.href = item2.html_url;
-            a.classList.add("link");
-            a.textContent = "View Profile";
-            a.target = "_blank";
+                div.append(avatar, login, a);
+                td.append(div);
+                tr.append(td);
+            }
 
-            div.append(avatar, login, a);
-            td.append(div);
-            tr.append(td);
+            const item2 = data[i + 1];
+            if (item2) {
+                const td = document.createElement("td");
+                const div = document.createElement("div");
+                div.classList.add("div-td");
+
+                const avatar = document.createElement("img");
+                avatar.src = item2.avatar_url;
+                avatar.width = 56;
+
+                const login = document.createElement("p");
+                login.textContent = item2.login;
+
+                const a = document.createElement("a");
+                a.href = item2.html_url;
+                a.classList.add("link");
+                a.textContent = "View Profile";
+                a.target = "_blank";
+
+                div.append(avatar, login, a);
+                td.append(div);
+                tr.append(td);
+            }
+            const item3 = data[i + 2];
+            if (item3) {
+                const td = document.createElement("td");
+                const div = document.createElement("div");
+                div.classList.add("div-td");
+
+                const avatar = document.createElement("img");
+                avatar.src = item3.avatar_url;
+                avatar.width = 56;
+
+                const login = document.createElement("p");
+                login.textContent = item3.login;
+
+                const a = document.createElement("a");
+                a.href = item3.html_url;
+                a.classList.add("link");
+                a.textContent = "View Profile";
+                a.target = "_blank";
+
+                div.append(avatar, login, a);
+                td.append(div);
+                tr.append(td);
+            }
+            fragment.appendChild(tr);
         }
-        const item3 = data[i + 2];
-        if (item3) {
-            const td = document.createElement("td");
-            const div = document.createElement("div");
-            div.classList.add("div-td");
-
-            const avatar = document.createElement("img");
-            avatar.src = item3.avatar_url;
-            avatar.width = 56;
-
-            const login = document.createElement("p");
-            login.textContent = item3.login;
-
-            const a = document.createElement("a");
-            a.href = item3.html_url;
-            a.classList.add("link");
-            a.textContent = "View Profile";
-            a.target = "_blank";
-
-            div.append(avatar, login, a);
-            td.append(div);
-            tr.append(td);
-        }
-        fragment.appendChild(tr);
     }
     table.appendChild(fragment);
 };
@@ -171,7 +192,8 @@ async function mainFunction(event) {
     showContent(data, followersTable);
 
     data = await getData("Repos");
-    //    showContent(data, reposTable);
+    console.log(data);
+    showContent(data, reposTable);
 }
 
 const toggles = [followersToggle, followingToggle, reposToggle];
