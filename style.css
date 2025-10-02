@@ -256,7 +256,12 @@ table {
     table-layout: fixed;
 }
 
+th {
+    border-bottom: 2px solid #0a0a0a;
+}
+
 td {
+    width: 100%;
     padding: 1rem;
 }
 
@@ -265,6 +270,14 @@ td .div-td {
     align-items: center;
     gap: 2rem;
 }
+
+.repo-name {
+    width: 20rem;
+}
+
+/* td .div-td :first-child {
+    width: 11rem;
+} */
 
 td img {
     border-radius: 50%;

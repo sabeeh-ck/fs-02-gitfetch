@@ -38,13 +38,16 @@ const getData = async (query) => {
     else if (query === "Followers") link = `https://api.github.com/users/${userId.value}/followers`;
     else link = `https://api.github.com/users/${userId.value}/repos`;
 
-    const res = await fetch(link);
-
-    if (res.ok) {
-        return await res.json();
-    } else {
-        console.error("Invalid UserId");
-        return 0;
+    try {
+        const res = await fetch(link);
+        /* if (res.ok) {
+            return await res.json();
+        } else {
+            console.error("Invalid UserId");
+            return 0;
+        } */
+    } catch (err) {
+        console.log(err);
     }
 };
 
@@ -82,20 +85,28 @@ const showContent = (data, table) => {
     if (table === reposTable) {
         for (let i = 0; i < data.length; i++) {
             const tr = document.createElement("tr");
+            const td = document.createElement("td");
+            td.colSpan = 3;
 
-            const name = document.createElement("td");
+            const div = document.createElement("div");
+            div.classList.add("div-td");
+
+            const name = document.createElement("p");
             name.textContent = data[i].name;
+            name.classList.add("repo-name");
 
-            const starCount = document.createElement("td");
+            const starCount = document.createElement("p");
             starCount.textContent = `${data[i].stargazers_count} ⭐`;
 
             const a = document.createElement("a");
-            a.href = item.html_url;
+            a.href = data[i].html_url;
             a.classList.add("link");
-            a.textContent = "View Profile";
+            a.textContent = "View in GItHub";
             a.target = "_blank";
 
-            tr.append(name, starCount, a);
+            div.append(name, starCount, a);
+            td.append(div);
+            tr.append(td);
             fragment.appendChild(tr);
         }
     } else {
